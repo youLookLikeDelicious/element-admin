@@ -1,0 +1,30 @@
+.el-card__header {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  padding-left: calc(var(--el-card-padding) + 8px) !important;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    left: var(--el-card-padding);
+    top: 50%;
+    width: 3px;
+    height: 20px;
+    transform: translateY(-50%);
+    display: inline-block;
+    background-color: #409eff;
+  }
+}
+
+.el-input-number .el-input__inner {
+  text-align: left !important;
+}
+.el-input-number {
+  width: 100% !important;
+}
+
+.el-date-editor {
+  .el-input__wrapper {
+    width: 100%;
+  }
+}

@@ -1,0 +1,23 @@
+// 右移
+.slide-to-right-enter-active, .slide-to-right-leave-active {
+  transition: all .3s cubic-bezier(0, 0.42, 0.62, 1.75); 
+}
+
+.slide-to-right-enter-from, .slide-to-right-leave-to {
+  translate: -145px 0;
+}
+.slide-to-right-enter-to, .slide-to-right-leave-from {
+  translate: 0 0;
+}
+
+// 左移
+.slide-to-left-enter-active, .slide-to-left-leave-active {
+  transition: all .3s cubic-bezier(0, 0.42, 0.62, 1.75); 
+}
+
+.slide-to-left-enter-from, .slide-to-left-leave-to {
+  translate: 145px 0;
+}
+.slide-to-left-enter-to, .slide-to-left-leave-from {
+  translate: 0 0;
+}
