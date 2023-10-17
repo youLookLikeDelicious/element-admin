@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import 'element-plus/dist/index.css'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import locale from 'element-plus/lib/locale/lang/zh-cn'
 
 </script>
 
 <template>
-  <RouterView />
+  <el-config-provider :locale="locale">
+    <div>
+      <RouterView />
+    </div>
+  </el-config-provider>
 </template>
 
 <style scoped>

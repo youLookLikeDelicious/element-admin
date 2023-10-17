@@ -1,9 +1,12 @@
 <script lang="ts" setup>
-defineProps<{ menus: layout.Menus[] }>()
+defineProps<{
+  menus: layout.Menus[],
+  isCollapse?: boolean
+}>()
 </script>
 
 <template>
-  <el-menu unique-opened router>
+  <el-menu :collapse="isCollapse" unique-opened router>
     <menu-item :menus="menus"></menu-item>
   </el-menu>
 </template>

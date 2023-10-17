@@ -1,10 +1,19 @@
 declare namespace layout {
-  interface Menus {
+  export interface Menus {
     id: number,
     name: string,
     title: string,
-    src: string,
+    url: string,
     icon: string,
-    list?: Menus[]
+    children?: Menus[]
   }
+}
+
+declare interface Menus {
+  id: number,
+  name: string,
+  title: string,
+  url: string,
+  icon: string,
+  children?: Menus[]
 }

@@ -2,7 +2,6 @@
 import { useRouter } from 'vue-router'
 import { reactive, ref } from 'vue';
 import { getCaptcha, login } from '@/apis'
-import { debounce } from 'throttle-debounce'
 import { useUserStore } from '@/stores/modules/user'
 import { useSubmit } from '@/composition/submit';
 
@@ -17,6 +16,7 @@ const rules = {
 
 // 登录表单
 const formData = reactive({
+  ability: 'login',
   name: '',
   password: '',
   captcha: '',
@@ -24,26 +24,25 @@ const formData = reactive({
 })
 
 // 获取验证码
-const capcha = ref('')
-const handlegetCaptcha = () => {
-  getCaptcha().then(({ data }) => {
+const captcha = ref('')
+const handleGetCaptcha = () => {
+  getCaptcha({ ability: 'login' }).then(({ data }) => {
     formData.key = data.key
-    capcha.value = data.img
+    captcha.value = data.img
   })
 }
-handlegetCaptcha()
+handleGetCaptcha()
 
 // 提交表单
 const { handleSubmit, form, isSubmitting } = useSubmit(() => {
   return login(formData)
     .then((res) => {
       const data = res.data.data
-      userStore.$patch({ _token: data.token, userData: data.user, menus: data.menus })
+      userStore.$patch({ _token: data.token })
       router.push('/')
     })
     .catch(() => {
-      console.log(form.value)
-      handlegetCaptcha()
+      handleGetCaptcha()
     })
 })
 
@@ -54,7 +53,7 @@ const { handleSubmit, form, isSubmitting } = useSubmit(() => {
     <el-row>
       <el-col :span="12" class="left-box h-100v col-box display-flex align-center justify-center position-relative">
         <transition-group enter-active-class="animate__animated animate__bounceInLeft" appear>
-          <img key="logo" class="logo position-absolute" src="/images/login-logo.png" style="width: 220px" alt="">
+          <!-- <img key="logo" class="logo position-absolute" src="/images/login-logo.png" style="width: 220px" alt=""> -->
           <div key="bg">
             <img src="/images/login-box-bg-fec91044.svg" style="width: 350px" alt="">
           </div>
@@ -71,23 +70,25 @@ const { handleSubmit, form, isSubmitting } = useSubmit(() => {
                 </template>
               </el-input>
             </el-form-item>
-            <el-form-item prop="name" class="mb-24">
-              <el-input placeholder="密码" v-model="formData.password" type="password">
+            <el-form-item prop="password" class="mb-24">
+              <el-input placeholder="密码" v-model="formData.password" show-password type="password">
                 <template #prefix>
                   <el-icon class="el-input__icon"><i-ep-lock /></el-icon>
                 </template>
               </el-input>
             </el-form-item>
-            <el-form-item>
-              <el-image v-if="capcha" :src="capcha" class="cursor-pointer" @click="handlegetCaptcha"></el-image>
-            </el-form-item>
-            <el-form-item prop="name" class="mb-24">
-              <el-input placeholder="验证码" v-model="formData.captcha">
-                <template #prefix>
-                  <el-icon class="el-input__icon"><i-ep-lock /></el-icon>
-                </template>
-              </el-input>
-            </el-form-item>
+            <template  v-if="captcha">
+              <el-form-item>
+                <el-image :src="captcha" class="cursor-pointer" style="height: 35px" @click="handleGetCaptcha"></el-image>
+              </el-form-item>
+              <el-form-item prop="captcha" class="mb-24">
+                <el-input placeholder="验证码" v-model="formData.captcha">
+                  <template #prefix>
+                    <el-icon class="el-input__icon"><i-ep-lock /></el-icon>
+                  </template>
+                </el-input>
+              </el-form-item>
+            </template>
             <el-button class="w-100" type="primary" native-type="submit" :loading="isSubmitting" @click="handleSubmit">登 录</el-button>
           </el-form>
         </transition>

@@ -33,7 +33,7 @@ axios.interceptors.request.use(function (config) {
   const userStore = useUserStore()
   // 添加token
   if (userStore._token) {
-    config.headers.Authorization = userStore._token
+    config.headers.Authorization = `Bearer ${userStore._token}`
   }
 
   return config

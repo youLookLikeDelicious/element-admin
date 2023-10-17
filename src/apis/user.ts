@@ -32,3 +32,7 @@ export function deleteDepartment(id: number) {
 export function getAllUser(params?: { department_id?: number }) {
   return request.get('/user/all', { params })
 }
+
+export function getCurrentUser() {
+  return request.post('/current-user')
+}

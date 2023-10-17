@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 
 const BackgroundList = [
   '#F44336', '#FF4081', '#9C27B0', '#673AB7',
@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
   <div class="">
     <el-image v-if="props.avatar" class="avatar" :src="props.avatar" mode="aspectFill" lazy-load="false" />
     <div v-else class="avatar align-item-center justify-content-center" :style="{ backgroundColor }">
-      <text style="color: #f5f7fa">{{ props.name.slice(0, 1) }}</text>
+      <text style="color: #f5f7fa">{{ props.name.slice(0, 1).toUpperCase() }}</text>
     </div>
   </div>
 </template>
@@ -44,5 +44,9 @@ $size: 45px;
   width: $size;
   height: $size;
   border-radius: $size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 21px;
 }
 </style>

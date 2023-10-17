@@ -1,8 +1,8 @@
 import request from '@/utils/axios'
 
 // 获取验证码
-export function getCaptcha(): Promise<{ data: { key: string, img: string } }> {
-  return request.get('/captcha/math')
+export function getCaptcha(params?: any): Promise<{ data: { key: string, img: string } }> {
+  return request.get('/captcha/math', { params })
 }
 
 // 获取菜单

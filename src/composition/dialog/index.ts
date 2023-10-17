@@ -1,17 +1,17 @@
 import { ref } from 'vue'
 
-export const useDialog = (callback?: (id?: number, data?: any) => any) => {
+export const useDialog = (callback?: (data?: any, id?: number) => any) => {
   const dialogVisible = ref(false)
 
-  const id = ref(0)
+  const id = ref<undefined|number>(0)
 
-  const handleVisible = (idParam: number, data?: any) => {
-    if (callback) {
-      callback(idParam, data)
-    }
-
+  const handleVisible = (data?: any, idParam?: number) => {
     id.value = idParam
     dialogVisible.value = true
+
+    if (typeof callback === 'function') {
+      return callback(data, idParam)
+    }
 
     return Promise.resolve()
   }
