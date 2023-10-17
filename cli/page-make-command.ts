@@ -13,7 +13,5 @@ const [command, route] = program.args
 
 // const dir = 
 // /[.+*?^${}()[\]/\\]/g
-if (fs.readdir) {
-  
-}
+
 export {}

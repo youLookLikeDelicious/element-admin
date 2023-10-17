@@ -138,7 +138,7 @@ defineExpose({ handleVisible, formData })
         </el-col>
         <el-col :span="8">
           <el-form-item label="部门" prop="departments">
-            <department-picker ref="departmentRef" v-model="formData.departments" multiple></department-picker>
+            <!-- <department-picker ref="departmentRef" v-model="formData.departments" multiple></department-picker> -->
           </el-form-item>
         </el-col>
         <el-col v-if="currentDepartment.some(department => department.split_saler === 2)" :span="8">

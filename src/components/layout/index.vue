@@ -51,7 +51,8 @@ const handleToggleSideBar = () => {
       </el-aside>
       <!-- 侧边栏 小屏幕 -->
       <el-aside ref="asideEl" :class="[ 'aside-bar-mobile', { 'aside-bar-mobile-collapse': configStore.isCollapse, 'aside-bar-mobile-expand': !configStore.isCollapse } ]">
-        <el-image class="logo" fit="scale-down" :src="'/images/logo.png'"></el-image>
+        <!-- <el-image class="logo" fit="scale-down" :src="'/images/logo.png'"></el-image> -->
+        <div class="title logo">Element Admin</div>
         <menus :menus="userStore.menus" class="flex-1"></menus>
         <div class="asideEl-mobile-curtain" v-if="!configStore.isCollapse" @click="handleToggleSideBar"></div>
       </el-aside>

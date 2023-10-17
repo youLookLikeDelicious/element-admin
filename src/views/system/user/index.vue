@@ -89,8 +89,8 @@ const handleShowUserInfo = (id: number) => {
           {{ row.departments.map((item: any) => item.name).join(',') }}
         </template>
       </el-table-column>
-      <el-table-column label="入职时间" align="center" prop="join_at" show-overflow-tooltip></el-table-column>
-      <el-table-column label="入职天数" align="center" prop="join_days"></el-table-column>
+      <!-- <el-table-column label="入职时间" align="center" prop="join_at" show-overflow-tooltip></el-table-column> -->
+      <!-- <el-table-column label="入职天数" align="center" prop="join_days"></el-table-column> -->
       <!-- <el-table-column label="角色" align="center" show-overflow-tooltip>
         <template v-slot="{ row }">
           <el-tag v-for="role in row.roles" :key="role.id">{{ role.name }}</el-tag>
